@@ -3,42 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>บทนำ - MentorPi M1</title>
+    <title>Introduction | MentorPi M1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
-        .content { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        h3 { color: #2980b9; margin-top: 1.5rem; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 10px; }
-        .nav-links { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #eee; text-align: center; }
-        .btn { display: inline-block; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; margin: 5px; }
-        .btn-alt { background: #95a5a6; }
+        :root { --tesla-black: #171a20; --tesla-gray: #393c41; --tesla-white: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--tesla-white); color: var(--tesla-black); }
+        
+        nav { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+        .logo { font-weight: 600; letter-spacing: 2px; text-decoration: none; color: black; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+        h1 { font-size: 2.5rem; margin-bottom: 40px; font-weight: 600; }
+        
+        .img-container { margin-bottom: 60px; }
+        .img-container img { width: 100%; max-width: 600px; border-radius: 8px; }
+
+        .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: left; margin-top: 40px; }
+        .spec-item h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--tesla-black); text-transform: uppercase; letter-spacing: 1px; }
+        .spec-item p { color: var(--tesla-gray); font-size: 0.95rem; line-height: 1.5; }
+
+        .cta-bottom { margin-top: 80px; display: flex; justify-content: center; gap: 20px; }
+        .btn { padding: 12px 40px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: 0.3s; }
+        .btn-dark { background: var(--tesla-black); color: white; }
+        .btn-light { background: #f4f4f4; color: var(--tesla-gray); }
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>🚀 บทนำ (Introduction)</h1>
+    <nav>
+        <a href="index.html" class="logo">MENTORPI M1</a>
+    </nav>
+
+    <div class="container">
+        <h1>Engineering Excellence</h1>
         
-        <div style="text-align: center; margin: 20px 0;">
-            <img src="https://docs.hiwonder.com/projects/MentorPi/en/latest/_images/1.1.png" alt="Hiwonder MentorPi M1" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onerror="this.src='https://media.robotshop.com/main/h/hiw/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving-1.jpg'">
-            <p style="font-size: 0.8rem; color: #7f8c8d;">ภาพประกอบ: Hiwonder MentorPi M1 (Mecanum Chassis)</p>
+        <div class="img-container">
+            <img src="https://media.robotshop.com/main/h/hiw/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving-1.jpg" alt="MentorPi M1">
         </div>
 
-        <p>ยินดีต้อนรับเข้าสู่การเรียนรู้หุ่นยนต์ระดับสูงกับ <strong>Hiwonder MentorPi M1</strong></p>
+        <div class="specs-grid">
+            <div class="spec-item">
+                <h3>Computation</h3>
+                <p>Powered by Raspberry Pi 5. High-speed processing for real-time AI inference and complex ROS2 nodes.</p>
+            </div>
+            <div class="spec-item">
+                <h3>Mecanum Drive</h3>
+                <p>Omnidirectional movement. Precision control with high-torque metal gear motors and Hall encoders.</p>
+            </div>
+            <div class="spec-item">
+                <h3>Vision & AI</h3>
+                <p>Monocular AI Camera integrated with YOLO and MediaPipe for advanced object recognition and human interaction.</p>
+            </div>
+            <div class="spec-item">
+                <h3>Lidar SLAM</h3>
+                <p>STL-19P TOF Lidar. 12m range for high-accuracy 2D/3D mapping and autonomous navigation.</p>
+            </div>
+        </div>
 
-        <h3>💡 จุดเด่นของหุ่นยนต์</h3>
-        <ul>
-            <li><strong>Raspberry Pi 5:</strong> ประสิทธิภาพสูง รองรับการคำนวณ AI และ ROS2 ได้ไหลลื่น</li>
-            <li><strong>Mecanum Wheels:</strong> เคลื่อนที่ได้ 8 ทิศทาง สไลด์ข้างได้ 360 องศา</li>
-            <li><strong>Lidar (STL-19P):</strong> ระบบเลเซอร์สแกนพื้นที่เพื่อทำแผนที่และหลบสิ่งกีดขวาง</li>
-            <li><strong>Monocular AI Camera:</strong> ดวงตาอัจฉริยะสำหรับตรวจจับวัตถุและป้ายจราจรด้วย YOLO</li>
-            <li><strong>ROS2 Humble:</strong> มาตรฐานซอฟต์แวร์หุ่นยนต์ระดับโลก</li>
-        </ul>
-
-        <div class="nav-links">
-            <a href="index.html" class="btn btn-alt">⬅️ กลับหน้าแรก</a>
-            <a href="schedule.html" class="btn">📅 ดูตารางการอบรม</a>
+        <div class="cta-bottom">
+            <a href="schedule.html" class="btn btn-dark">View Schedule</a>
+            <a href="index.html" class="btn btn-light">Back to Home</a>
         </div>
     </div>
 </body>

@@ -3,47 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MentorPi M1 Training Portal</title>
+    <title>MentorPi M1 | Premium Robotics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
-        header { background: #2c3e50; color: white; padding: 2rem; text-align: center; border-radius: 10px; margin-bottom: 2rem; }
-        .card-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-decoration: none; color: inherit; transition: transform 0.2s; border-top: 5px solid #3498db; }
-        .card:hover { transform: translateY(-5px); }
-        .card h3 { margin-top: 0; color: #2c3e50; }
-        .prep { background: #e8f4fd; padding: 20px; border-radius: 8px; margin-top: 2rem; border-left: 5px solid #3498db; }
-        footer { text-align: center; margin-top: 3rem; font-size: 0.9rem; color: #7f8c8d; }
-        @media (max-width: 600px) { .card-container { grid-template-columns: 1fr; } }
+        :root { --tesla-black: #171a20; --tesla-gray: #393c41; --tesla-white: #ffffff; --accent: #3e6ae1; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+        body { background-color: var(--tesla-white); color: var(--tesla-black); overflow-x: hidden; }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 80px 20px 40px;
+            background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), 
+                        url('https://media.robotshop.com/main/h/hiw/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving-1.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+        
+        .hero-text h1 { font-size: 3rem; font-weight: 600; letter-spacing: -1px; margin-bottom: 10px; color: var(--tesla-black); }
+        .hero-text p { font-size: 1.1rem; color: var(--tesla-gray); }
+
+        .cta-container { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 600px; padding: 0 20px; }
+        .btn { 
+            padding: 12px 0; 
+            border-radius: 4px; 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            font-weight: 600; 
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .btn-primary { background: rgba(23, 26, 32, 0.8); color: white; backdrop-filter: blur(8px); }
+        .btn-secondary { background: rgba(244, 244, 244, 0.65); color: var(--tesla-gray); backdrop-filter: blur(8px); }
+        .btn:hover { opacity: 0.8; transform: scale(1.01); }
+
+        @media (min-width: 768px) {
+            .cta-container { flex-direction: row; }
+            .btn { flex: 1; }
+            .hero-text h1 { font-size: 3.5rem; }
+        }
+
+        /* Nav */
+        nav { position: fixed; top: 0; width: 100%; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.2rem; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>🤖 MentorPi M1 Portal</h1>
-        <p>ศูนย์รวมข้อมูลการอบรมหุ่นยนต์ ROS2 สำหรับนักเรียน</p>
-    </header>
+    <nav>
+        <div class="logo">MENTORPI M1</div>
+    </nav>
 
-    <div class="card-container">
-        <a href="intro.html" class="card">
-            <h3>🚀 บทนำ (Intro)</h3>
-            <p>ทำความรู้จักฮาร์ดแวร์ Pi 5, ล้อ Mecanum และระบบ Lidar อัจฉริยะ</p>
-        </a>
-        <a href="schedule.html" class="card">
-            <h3>📅 ตารางการอบรม</h3>
-            <p>แผนการเรียน 2.5 วัน พร้อมรายละเอียด Workshop และภารกิจสุดท้าทาย</p>
-        </a>
-    </div>
+    <section class="hero">
+        <div class="hero-text">
+            <h1>MentorPi M1</h1>
+            <p>The Future of ROS2 & AI Learning</p>
+        </div>
 
-    <div class="prep">
-        <h4>🛠️ สิ่งที่ต้องเตรียม (Checklist)</h4>
-        <ul>
-            <li>SD Cards ที่ติดตั้ง Image (Docker + ROS2) พร้อมใช้</li>
-            <li>Router WiFi ความเร็วสูงสำหรับเชื่อมต่อหุ่นยนต์</li>
-            <li>คอมพิวเตอร์สำหรับการ Remote ผ่าน VNC หรือ SSH</li>
-        </ul>
-    </div>
+        <div class="cta-container">
+            <a href="intro.html" class="btn btn-primary">Experience Intro</a>
+            <a href="schedule.html" class="btn btn-secondary">Training Schedule</a>
+        </div>
+    </section>
 
     <footer>
-        <p>จัดทำโดย: วิทยากร MentorPi | <a href="https://github.com/alfaXphoori/MentorPi">ดูบน GitHub</a></p>
+        <div style="padding: 20px; text-align: center; color: var(--tesla-gray); font-size: 0.8rem;">
+            MentorPi Training © 2026 | <a href="https://github.com/alfaXphoori/MentorPi" style="color: inherit;">GitHub</a>
+        </div>
     </footer>
 </body>
 </html>
