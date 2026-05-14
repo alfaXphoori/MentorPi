@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engineering | MentorPi M1</title>
+    <title>ข้อมูลทางวิศวกรรม | MentorPi M1</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root { --tesla-black: #171a20; --tesla-gray: #393c41; --tesla-white: #ffffff; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Sarabun', sans-serif; }
         body { background-color: var(--tesla-white); color: var(--tesla-black); }
         
         /* Nav */
@@ -23,7 +23,7 @@
         .img-hero { width: 100%; max-width: 700px; border-radius: 4px; margin-bottom: 80px; }
 
         .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; text-align: left; }
-        .spec-item h3 { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+        .spec-item h3 { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; color: var(--tesla-black); }
         .spec-item p { color: var(--tesla-gray); font-size: 0.95rem; line-height: 1.6; }
 
         .cta-bottom { margin-top: 100px; display: flex; flex-direction: column; gap: 15px; align-items: center; }
@@ -43,33 +43,33 @@
     </nav>
 
     <div class="container">
-        <h1>Engineering Excellence</h1>
-        <p class="subtitle">Sophisticated hardware meets advanced software.</p>
+        <h1>อัจฉริยภาพทางวิศวกรรม</h1>
+        <p class="subtitle">เมื่อฮาร์ดแวร์ที่ซับซ้อน ผสานเข้ากับซอฟต์แวร์ที่ล้ำสมัย</p>
         
         <img src="https://media.robotshop.com/main/h/hiw/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving-1.jpg" alt="MentorPi M1" class="img-hero">
 
         <div class="specs-grid">
             <div class="spec-item">
-                <h3>Computation</h3>
-                <p>Powered by Raspberry Pi 5. High-speed processing for real-time AI inference and complex ROS2 nodes.</p>
+                <h3>ระบบประมวลผล</h3>
+                <p>ขับเคลื่อนด้วย Raspberry Pi 5 ประมวลผลด้วยความเร็วสูง รองรับการทำงานของ AI และ ROS2 แบบ Real-time</p>
             </div>
             <div class="spec-item">
-                <h3>Mecanum Drive</h3>
-                <p>Omnidirectional movement. Precision control with high-torque metal gear motors and Hall encoders.</p>
+                <h3>ระบบขับเคลื่อน Mecanum</h3>
+                <p>เคลื่อนที่ได้อย่างอิสระทุกทิศทาง ควบคุมแม่นยำด้วยมอเตอร์เกียร์โลหะแรงบิดสูงพร้อม Hall Encoder</p>
             </div>
             <div class="spec-item">
-                <h3>Vision & AI</h3>
-                <p>Monocular AI Camera integrated with YOLO and MediaPipe for advanced object recognition and human interaction.</p>
+                <h3>วิสัยทัศน์ AI</h3>
+                <p>กล้อง Monocular AI ทำงานร่วมกับ YOLO และ MediaPipe เพื่อการตรวจจับวัตถุและปฏิสัมพันธ์กับมนุษย์ที่เหนือชั้น</p>
             </div>
             <div class="spec-item">
-                <h3>Lidar SLAM</h3>
-                <p>STL-19P TOF Lidar. 12m range for high-accuracy 2D/3D mapping and autonomous navigation.</p>
+                <h3>ระบบนำทาง Lidar</h3>
+                <p>STL-19P TOF Lidar ระยะสแกน 12 เมตร เพื่อการสร้างแผนที่ SLAM และการนำทางอัตโนมัติที่มีความแม่นยำสูง</p>
             </div>
         </div>
 
         <div class="cta-bottom">
-            <a href="schedule.html" class="btn btn-dark">View Schedule</a>
-            <a href="index.html" class="btn btn-light">Back to Home</a>
+            <a href="schedule.html" class="btn btn-dark">ดูตารางการอบรม</a>
+            <a href="index.html" class="btn btn-light">กลับหน้าแรก</a>
         </div>
     </div>
 </body>
