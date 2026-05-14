@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MentorPi M1 Training Portal</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
+        header { background: #2c3e50; color: white; padding: 2rem; text-align: center; border-radius: 10px; margin-bottom: 2rem; }
+        .card-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-decoration: none; color: inherit; transition: transform 0.2s; border-top: 5px solid #3498db; }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { margin-top: 0; color: #2c3e50; }
+        .prep { background: #e8f4fd; padding: 20px; border-radius: 8px; margin-top: 2rem; border-left: 5px solid #3498db; }
+        footer { text-align: center; margin-top: 3rem; font-size: 0.9rem; color: #7f8c8d; }
+        @media (max-width: 600px) { .card-container { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🤖 MentorPi M1 Portal</h1>
+        <p>ศูนย์รวมข้อมูลการอบรมหุ่นยนต์ ROS2 สำหรับนักเรียน</p>
+    </header>
+
+    <div class="card-container">
+        <a href="intro.html" class="card">
+            <h3>🚀 บทนำ (Intro)</h3>
+            <p>ทำความรู้จักฮาร์ดแวร์ Pi 5, ล้อ Mecanum และระบบ Lidar อัจฉริยะ</p>
+        </a>
+        <a href="schedule.html" class="card">
+            <h3>📅 ตารางการอบรม</h3>
+            <p>แผนการเรียน 2.5 วัน พร้อมรายละเอียด Workshop และภารกิจสุดท้าทาย</p>
+        </a>
+    </div>
+
+    <div class="prep">
+        <h4>🛠️ สิ่งที่ต้องเตรียม (Checklist)</h4>
+        <ul>
+            <li>SD Cards ที่ติดตั้ง Image (Docker + ROS2) พร้อมใช้</li>
+            <li>Router WiFi ความเร็วสูงสำหรับเชื่อมต่อหุ่นยนต์</li>
+            <li>คอมพิวเตอร์สำหรับการ Remote ผ่าน VNC หรือ SSH</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>จัดทำโดย: วิทยากร MentorPi | <a href="https://github.com/alfaXphoori/MentorPi">ดูบน GitHub</a></p>
+    </footer>
+</body>
+</html>
