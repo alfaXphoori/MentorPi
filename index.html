@@ -12,6 +12,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Sarabun', -apple-system, sans-serif; }
         body { background-color: var(--tesla-white); color: var(--tesla-black); overflow-x: hidden; }
         
+        /* Nav */
+        nav { position: fixed; top: 0; width: 100%; padding: 0 40px; height: 56px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; transition: background 0.3s; }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--tesla-black); font-size: 0.9rem; font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--tesla-gray); background: rgba(0,0,0,0.05); padding: 5px 15px; border-radius: 4px; margin: -5px -15px; }
+        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; text-decoration: none; color: inherit; }
+
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -19,7 +26,7 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 80px 20px 40px;
+            padding: 120px 20px 40px;
             background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), 
                         url('https://media.robotshop.com/main/h/hiw/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving-1.jpg');
             background-size: cover;
@@ -44,20 +51,27 @@
         .btn-secondary { background: rgba(244, 244, 244, 0.65); color: var(--tesla-gray); backdrop-filter: blur(8px); }
         .btn:hover { opacity: 0.8; transform: scale(1.01); }
 
-        @media (min-width: 768px) {
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simplified for demo, can add hamburger later */
+            .hero-text h1 { font-size: 2.5rem; }
+        }
+
+        @media (min-width: 769px) {
             .cta-container { flex-direction: row; }
             .btn { flex: 1; }
             .hero-text h1 { font-size: 3.5rem; }
         }
-
-        /* Nav */
-        nav { position: fixed; top: 0; width: 100%; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
-        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.2rem; }
     </style>
 </head>
 <body>
     <nav>
-        <div class="logo">MENTORPI M1</div>
+        <a href="index.html" class="logo">MENTORPI M1</a>
+        <ul class="nav-links">
+            <li><a href="intro.html">วิศวกรรม</a></li>
+            <li><a href="schedule.html">ตารางอบรม</a></li>
+            <li><a href="https://github.com/alfaXphoori/MentorPi">GitHub</a></li>
+        </ul>
+        <div style="width: 100px;"></div> <!-- Spacer for symmetry -->
     </nav>
 
     <section class="hero">
@@ -74,7 +88,7 @@
 
     <footer>
         <div style="padding: 20px; text-align: center; color: var(--tesla-gray); font-size: 0.8rem;">
-            MentorPi Training © 2026 | <a href="https://github.com/alfaXphoori/MentorPi" style="color: inherit;">GitHub</a>
+            MentorPi Training © 2026
         </div>
     </footer>
 </body>

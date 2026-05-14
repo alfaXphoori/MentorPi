@@ -13,8 +13,11 @@
         body { background-color: var(--tesla-white); color: var(--tesla-black); }
         
         /* Nav */
-        nav { position: fixed; top: 0; width: 100%; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); }
-        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.2rem; text-decoration: none; color: inherit; }
+        nav { position: fixed; top: 0; width: 100%; padding: 0 40px; height: 56px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--tesla-black); font-size: 0.9rem; font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--tesla-gray); background: rgba(0,0,0,0.05); padding: 5px 15px; border-radius: 4px; margin: -5px -15px; }
+        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; text-decoration: none; color: inherit; }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 120px 20px 60px; text-align: center; }
         h1 { font-size: 2.5rem; font-weight: 600; margin-bottom: 20px; letter-spacing: -0.5px; }
@@ -32,7 +35,11 @@
         .btn-light { background: #f4f4f4; color: var(--tesla-gray); }
         .btn:hover { opacity: 0.8; transform: scale(1.01); }
 
-        @media (min-width: 768px) {
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
+
+        @media (min-width: 769px) {
             .cta-bottom { flex-direction: row; justify-content: center; }
         }
     </style>
@@ -40,6 +47,12 @@
 <body>
     <nav>
         <a href="index.html" class="logo">MENTORPI M1</a>
+        <ul class="nav-links">
+            <li><a href="intro.html">วิศวกรรม</a></li>
+            <li><a href="schedule.html">ตารางอบรม</a></li>
+            <li><a href="https://github.com/alfaXphoori/MentorPi">GitHub</a></li>
+        </ul>
+        <div style="width: 100px;"></div>
     </nav>
 
     <div class="container">
