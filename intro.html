@@ -3,30 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction | MentorPi M1</title>
+    <title>Engineering | MentorPi M1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root { --tesla-black: #171a20; --tesla-gray: #393c41; --tesla-white: #ffffff; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--tesla-white); color: var(--tesla-black); }
+        body { background-color: var(--tesla-white); color: var(--tesla-black); }
         
-        nav { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
-        .logo { font-weight: 600; letter-spacing: 2px; text-decoration: none; color: black; }
+        /* Nav */
+        nav { position: fixed; top: 0; width: 100%; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); }
+        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.2rem; text-decoration: none; color: inherit; }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; text-align: center; }
-        h1 { font-size: 2.5rem; margin-bottom: 40px; font-weight: 600; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 120px 20px 60px; text-align: center; }
+        h1 { font-size: 2.5rem; font-weight: 600; margin-bottom: 20px; letter-spacing: -0.5px; }
+        .subtitle { color: var(--tesla-gray); margin-bottom: 60px; font-size: 1.1rem; }
         
-        .img-container { margin-bottom: 60px; }
-        .img-container img { width: 100%; max-width: 600px; border-radius: 8px; }
+        .img-hero { width: 100%; max-width: 700px; border-radius: 4px; margin-bottom: 80px; }
 
-        .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: left; margin-top: 40px; }
-        .spec-item h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--tesla-black); text-transform: uppercase; letter-spacing: 1px; }
-        .spec-item p { color: var(--tesla-gray); font-size: 0.95rem; line-height: 1.5; }
+        .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; text-align: left; }
+        .spec-item h3 { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+        .spec-item p { color: var(--tesla-gray); font-size: 0.95rem; line-height: 1.6; }
 
-        .cta-bottom { margin-top: 80px; display: flex; justify-content: center; gap: 20px; }
-        .btn { padding: 12px 40px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: 0.3s; }
+        .cta-bottom { margin-top: 100px; display: flex; flex-direction: column; gap: 15px; align-items: center; }
+        .btn { padding: 12px 60px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.3s; text-transform: uppercase; width: 100%; max-width: 300px; text-align: center; }
         .btn-dark { background: var(--tesla-black); color: white; }
         .btn-light { background: #f4f4f4; color: var(--tesla-gray); }
+        .btn:hover { opacity: 0.8; transform: scale(1.01); }
+
+        @media (min-width: 768px) {
+            .cta-bottom { flex-direction: row; justify-content: center; }
+        }
     </style>
 </head>
 <body>
@@ -36,10 +44,9 @@
 
     <div class="container">
         <h1>Engineering Excellence</h1>
+        <p class="subtitle">Sophisticated hardware meets advanced software.</p>
         
-        <div class="img-container">
-            <img src="https://media.robotshop.com/main/h/hiw/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving-1.jpg" alt="MentorPi M1">
-        </div>
+        <img src="https://media.robotshop.com/main/h/hiw/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving-1.jpg" alt="MentorPi M1" class="img-hero">
 
         <div class="specs-grid">
             <div class="spec-item">
