@@ -53,43 +53,55 @@
     </nav>
 
     <div class="container">
-        <h1>แผนการเรียนรู้</h1>
-        <p class="subtitle">จากการวางรากฐาน สู่ปัญญาประดิษฐ์ที่ขับเคลื่อนได้ด้วยตนเอง</p>
+        <h1>แผนการเรียนรู้ (Official Path)</h1>
+        <p class="subtitle">หลักสูตรตามมาตรฐาน Hiwonder เพื่อการใช้งาน MentorPi M1 อย่างเต็มประสิทธิภาพ</p>
 
         <div class="roadmap">
             <div class="day-block">
-                <h2>วันที่ 1: การวางรากฐาน</h2>
+                <h2>วันที่ 1: สถาปัตยกรรมและการควบคุมพื้นฐาน</h2>
                 <div class="event">
-                    <h4>โครงสร้างพื้นฐานหลัก</h4>
-                    <p>เรียนรู้สถาปัตยกรรมระบบ, การติดตั้ง SSH/VNC และการจัดการสภาพแวดล้อมผ่าน Docker</p>
+                    <h4>บทที่ 1: การเตรียมความพร้อม (Environment)</h4>
+                    <p>การเชื่อมต่อ Wi-Fi (AP/LAN Mode), การรีโมทผ่าน VNC/SSH และการจัดการ Container ผ่าน Docker Integration</p>
                 </div>
                 <div class="event">
-                    <h4>ฟิสิกส์ของ Mecanum</h4>
-                    <p>แนวคิด ROS2 Topics, กลศาสตร์ของล้อ Mecanum และ Workshop การควบคุมแบบ Real-time</p>
-                </div>
-            </div>
-
-            <div class="day-block">
-                <h2>วันที่ 2: ปัญญาประดิษฐ์</h2>
-                <div class="event">
-                    <h4>วิสัยทัศน์คอมพิวเตอร์</h4>
-                    <p>ระบบ CV Pipelines และการประยุกต์ใช้ MediaPipe เพื่อตรวจจับใบหน้าและท่าทาง</p>
+                    <h4>บทที่ 2: กลไกการเคลื่อนที่และเซนเซอร์</h4>
+                    <p>การควบคุม Mecanum Chassis, การปรับแต่ง Servo Deviation และการทำ IMU/Velocity Calibration</p>
                 </div>
                 <div class="event">
-                    <h4>การใช้งาน AI</h4>
-                    <p>การติดตั้งและใช้งาน YOLO Vision และ Workshop การเคลื่อนที่ตามเส้นด้วยระบบ PID</p>
+                    <h4>บทที่ 3: ระบบ Lidar เบื้องต้น</h4>
+                    <p>การทำงานของ Lidar (STL-19P), Workshop หุ่นยนต์เฝ้ายาม (Guarding) และการหลบสิ่งกีดขวาง (Avoidance)</p>
                 </div>
             </div>
 
             <div class="day-block">
-                <h2>วันที่ 3: อิสรภาพในการขับเคลื่อน</h2>
+                <h2>วันที่ 2: วิสัยทัศน์คอมพิวเตอร์และปฏิสัมพันธ์ AI</h2>
                 <div class="event">
-                    <h4>การรับรู้เชิงพื้นที่</h4>
-                    <p>Lidar SLAM, การสร้างแผนที่ด้วย Cartographer และระบบนำทาง Nav2 Stack</p>
+                    <h4>บทที่ 4: OpenCV & Vision Logic</h4>
+                    <p>การประมวลผลภาพ (Color Recognition), การตรวจจับ QR Code และการเขียนโปรแกรมวิ่งตามเส้น (Line Following)</p>
                 </div>
                 <div class="event">
-                    <h4>บททดสอบสุดท้าย</h4>
-                    <p>การแข่งขันภารกิจนำทางอัตโนมัติ และพิธีมอบเกียรติบัตร</p>
+                    <h4>บทที่ 5: MediaPipe Interaction</h4>
+                    <p>การตรวจจับท่าทางมือ (Fingertip Recognition), การติดตามใบหน้า และระบบควบคุมหุ่นยนต์ด้วยท่าทางร่างกาย</p>
+                </div>
+                <div class="event">
+                    <h4>บทที่ 6: Machine Learning Deployment</h4>
+                    <p>การใช้งาน YOLOv5/v11 บนหุ่นยนต์: ตั้งแต่การเตรียม Dataset ไปจนถึงการตรวจจับวัตถุในระดับ Real-time</p>
+                </div>
+            </div>
+
+            <div class="day-block">
+                <h2>วันที่ 3: ระบบนำทางและการขับเคลื่อนอัตโนมัติ</h2>
+                <div class="event">
+                    <h4>บทที่ 7: 2D SLAM & Localization</h4>
+                    <p>การสร้างแผนที่ด้วย slam_toolbox, การตั้งค่า URDF Model และการระบุตำแหน่งด้วย AMCL</p>
+                </div>
+                <div class="event">
+                    <h4>บทที่ 8: Autonomous Navigation (Nav2)</h4>
+                    <p>การวางแผนเส้นทาง (Path Planning) ด้วย DWA Algorithm และภารกิจ Multi-point Navigation</p>
+                </div>
+                <div class="event">
+                    <h4>บทที่ 9: Project: Autonomous Driving</h4>
+                    <p>ภารกิจรวม: การขับขี่อัตโนมัติในสนามจำลอง ตรวจจับสัญญาณไฟจราจร และการจอดรถอัตโนมัติ</p>
                 </div>
             </div>
         </div>
