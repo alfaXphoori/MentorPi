@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทที่ 4: Machine Learning (YOLO) | MentorPi M1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --tesla-black: #171a20; --tesla-gray: #393c41; --tesla-white: #ffffff; --earth-bg: #fcfaf7; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Sarabun', sans-serif; }
+        body { background-color: var(--earth-bg); color: var(--tesla-black); line-height: 1.6; }
+        nav { position: fixed; top: 0; width: 100%; padding: 0 40px; height: 56px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(252, 250, 247, 0.8); backdrop-filter: blur(10px); }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--tesla-black); font-size: 0.9rem; font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--tesla-gray); background: rgba(0,0,0,0.05); padding: 5px 15px; border-radius: 4px; margin: -5px -15px; }
+        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; text-decoration: none; color: inherit; display: flex; align-items: center; }
+        .container { max-width: 800px; margin: 0 auto; padding: 120px 20px 80px; }
+        .header-section { margin-bottom: 40px; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+        .chapter-label { color: #cb997e; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 10px; display: block; }
+        h1 { font-size: 2.2rem; font-weight: 600; color: var(--tesla-black); }
+        .content-block { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); margin-bottom: 30px; border: 1px solid #f0f0f0; }
+        h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 20px; color: #6b705c; border-left: 4px solid #6b705c; padding-left: 15px; }
+        h3 { font-size: 1.1rem; font-weight: 600; margin-top: 25px; margin-bottom: 10px; }
+        p { color: var(--tesla-gray); margin-bottom: 15px; font-size: 1.05rem; }
+        ul, ol { margin-left: 20px; margin-bottom: 20px; color: var(--tesla-gray); font-size: 1.05rem; }
+        li { margin-bottom: 8px; }
+        .code-block { background: #1e272e; color: #a4b0be; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 0.9rem; overflow-x: auto; margin-bottom: 20px; }
+        .highlight { color: #ffdd59; }
+        .cta-bottom { text-align: center; margin-top: 60px; }
+        .btn { display: inline-block; padding: 12px 40px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 600; background: var(--tesla-black); color: white; transition: all 0.3s; text-transform: uppercase; margin-bottom: 10px; }
+        .btn-alt { background: #f4f4f4; color: var(--tesla-black); margin-right: 15px; }
+        .btn:hover { opacity: 0.8; }
+        @media (max-width: 768px) { .nav-links { display: none; } .content-block { padding: 25px; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="MentorPi Logo" style="height: 30px; vertical-align: middle; margin-right: 10px;">
+            MENTORPI M1
+        </a>
+        <ul class="nav-links">
+            <li><a href="intro.html">วิศวกรรม</a></li>
+            <li><a href="schedule.html">ตารางอบรม</a></li>
+            <li><a href="https://github.com/alfaXphoori/MentorPi">GitHub</a></li>
+        </ul>
+        <div style="width: 100px;"></div>
+    </nav>
+
+    <div class="container">
+        <section class="header-section">
+            <span class="chapter-label">วันที่ 1: พื้นฐานวิศวกรรมและวิสัยทัศน์ AI</span>
+            <h1>บทที่ 4: Machine Learning (YOLO)</h1>
+        </section>
+
+        <div class="content-block">
+            <h2>4.1 ทำความรู้จัก YOLO (You Only Look Once)</h2>
+            <p>YOLO คือโครงข่ายประสาทเทียม (Neural Network) ที่เก่งด้านการตรวจจับวัตถุ (Object Detection) ในระดับ Real-time ด้วยประสิทธิภาพของบอร์ด Raspberry Pi 5 ทำให้ MentorPi M1 สามารถรันโมเดล YOLOv5 หรือ YOLOv11 ได้โดยตรง</p>
+            <ul>
+                <li><strong>ข้อดี:</strong> ตรวจจับวัตถุได้หลายชนิดพร้อมกัน, บอกตำแหน่ง (Bounding Box) ได้แม่นยำ, ประมวลผลเร็ว</li>
+            </ul>
+        </div>
+
+        <div class="content-block">
+            <h2>4.2 Workshop: Traffic Sign Detection</h2>
+            <p>ในบทนี้ เราจะเปิดใช้งานโมเดล AI ที่ถูกเทรน (Train) มาแล้วเพื่อตรวจจับ "ป้ายจราจร" และ "สัญญาณไฟ" ซึ่งเป็นหัวใจสำคัญของการทำรถยนต์ไร้คนขับ (Autonomous Driving)</p>
+            <ol>
+                <li>เข้าสู่ระบบ Docker ผ่าน VNC Desktop <code>./enter_docker.sh</code></li>
+                <li>พิมพ์คำสั่งเพื่อเรียกใช้โมเดล YOLO:
+                    <div class="code-block">ros2 launch yolo_app yolo_detection.launch.py</div>
+                </li>
+                <li>นำแผ่นป้ายจราจรจำลอง (เช่น ป้ายหยุด, เลี้ยวซ้าย, เลี้ยวขวา) มาแสดงหน้ากล้องของหุ่นยนต์</li>
+                <li>บนหน้าจอ VNC จะปรากฏกรอบสี่เหลี่ยมคลุมป้ายจราจร พร้อมแสดงชื่อคลาส (Class Name) และความมั่นใจ (Confidence Score)</li>
+            </ol>
+            <p style="background: #fff3cd; color: #856404; padding: 10px; border-radius: 6px; font-size: 0.9rem; border-left: 4px solid #ffeaa7;"><strong>💡 Tip:</strong> ROS2 จะส่งข้อมูล "สิ่งที่ตรวจพบ" ไปยัง Topic (เช่น <code>/yolo/detections</code>) นักเรียนสามารถเขียนโค้ด Python มารับค่านี้ เพื่อสั่งให้ล้อเบรกเมื่อเจอป้าย "STOP" ได้ในภายหลัง</p>
+        </div>
+
+        <div class="cta-bottom">
+            <a href="chapter3.html" class="btn btn-alt">&larr; ย้อนกลับบทที่ 3</a>
+            <a href="chapter5.html" class="btn">ไปบทที่ 5: 2D SLAM & Localization &rarr;</a>
+        </div>
+    </div>
+</body>
+</html>

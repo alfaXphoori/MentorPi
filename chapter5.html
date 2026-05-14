@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทที่ 5: 2D SLAM & Localization | MentorPi M1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --tesla-black: #171a20; --tesla-gray: #393c41; --tesla-white: #ffffff; --earth-bg: #fcfaf7; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Sarabun', sans-serif; }
+        body { background-color: var(--earth-bg); color: var(--tesla-black); line-height: 1.6; }
+        nav { position: fixed; top: 0; width: 100%; padding: 0 40px; height: 56px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(252, 250, 247, 0.8); backdrop-filter: blur(10px); }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--tesla-black); font-size: 0.9rem; font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--tesla-gray); background: rgba(0,0,0,0.05); padding: 5px 15px; border-radius: 4px; margin: -5px -15px; }
+        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; text-decoration: none; color: inherit; display: flex; align-items: center; }
+        .container { max-width: 800px; margin: 0 auto; padding: 120px 20px 80px; }
+        .header-section { margin-bottom: 40px; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+        .chapter-label { color: #cb997e; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 10px; display: block; }
+        h1 { font-size: 2.2rem; font-weight: 600; color: var(--tesla-black); }
+        .content-block { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); margin-bottom: 30px; border: 1px solid #f0f0f0; }
+        h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 20px; color: #6b705c; border-left: 4px solid #6b705c; padding-left: 15px; }
+        h3 { font-size: 1.1rem; font-weight: 600; margin-top: 25px; margin-bottom: 10px; }
+        p { color: var(--tesla-gray); margin-bottom: 15px; font-size: 1.05rem; }
+        ul, ol { margin-left: 20px; margin-bottom: 20px; color: var(--tesla-gray); font-size: 1.05rem; }
+        li { margin-bottom: 8px; }
+        .code-block { background: #1e272e; color: #a4b0be; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 0.9rem; overflow-x: auto; margin-bottom: 20px; }
+        .highlight { color: #ffdd59; }
+        .cta-bottom { text-align: center; margin-top: 60px; }
+        .btn { display: inline-block; padding: 12px 40px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 600; background: var(--tesla-black); color: white; transition: all 0.3s; text-transform: uppercase; margin-bottom: 10px; }
+        .btn-alt { background: #f4f4f4; color: var(--tesla-black); margin-right: 15px; }
+        .btn:hover { opacity: 0.8; }
+        @media (max-width: 768px) { .nav-links { display: none; } .content-block { padding: 25px; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="MentorPi Logo" style="height: 30px; vertical-align: middle; margin-right: 10px;">
+            MENTORPI M1
+        </a>
+        <ul class="nav-links">
+            <li><a href="intro.html">วิศวกรรม</a></li>
+            <li><a href="schedule.html">ตารางอบรม</a></li>
+            <li><a href="https://github.com/alfaXphoori/MentorPi">GitHub</a></li>
+        </ul>
+        <div style="width: 100px;"></div>
+    </nav>
+
+    <div class="container">
+        <section class="header-section">
+            <span class="chapter-label">วันที่ 2: ระบบนำทางอัตโนมัติ</span>
+            <h1>บทที่ 5: 2D SLAM & Localization</h1>
+        </section>
+
+        <div class="content-block">
+            <h2>5.1 การสร้างแผนที่ (SLAM)</h2>
+            <p><strong>SLAM (Simultaneous Localization and Mapping)</strong> คือการให้หุ่นยนต์วิ่งไปในพื้นที่ที่ไม่รู้จัก สร้างแผนที่ และระบุตำแหน่งตัวเองไปพร้อมๆ กัน โดยเราจะใช้ <code>slam_toolbox</code> ซึ่งเป็นมาตรฐานของ ROS2</p>
+            <ol>
+                <li>เปิด Terminal (บน VNC หรือ SSH) เข้า Docker แล้วรัน:
+                    <div class="code-block">ros2 launch slam_mapping slam_toolbox.launch.py</div>
+                </li>
+                <li>เปิดโปรแกรม <strong>RViz2</strong> บนหน้าจอ VNC เพื่อดูแผนที่แบบ Real-time</li>
+                <li>ใช้จอยคอนโทรลเลอร์ หรือรันคีย์บอร์ด <code>teleop</code> ขับหุ่นยนต์ไปรอบๆ ห้อง จนกว่าจะได้แผนที่ที่สมบูรณ์ (ผนังห้องครบถ้วน)</li>
+            </ol>
+        </div>
+
+        <div class="content-block">
+            <h2>5.2 การบันทึกแผนที่</h2>
+            <p>เมื่อเราสแกนห้องเสร็จแล้ว ต้องบันทึกข้อมูลไว้เพื่อใช้ในระบบนำทางต่อไป (จะได้ไฟล์ <code>.yaml</code> และ <code>.pgm</code>)</p>
+            <div class="code-block">
+                # รันคำสั่งเซฟใน Terminal ใหม่ (ที่อยู่ใน Docker)<br>
+                ros2 run nav2_map_server map_saver_cli -f /home/pi/hiwonder_ws/src/mentorpi_maps/maps/my_room
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2>5.3 การระบุตำแหน่ง (AMCL Localization)</h2>
+            <p>หลังจากมีแผนที่แล้ว เมื่อหุ่นยนต์เปิดขึ้นมาใหม่ มันจะไม่รู้ว่าตัวเองอยู่ตรงไหนของแผนที่ เราต้องใช้ <strong>AMCL (Adaptive Monte Carlo Localization)</strong> เพื่อช่วยระบุตำแหน่ง</p>
+            <ul>
+                <li>ในโปรแกรม RViz2 ให้ใช้เครื่องมือ <strong>2D Pose Estimate</strong> (ลูกศรสีเขียว) คลิกแล้วลากบนแผนที่เพื่อบอกหุ่นยนต์ว่า "ตอนนี้คุณอยู่ตรงนี้นะ และหันหน้าไปทางนี้"</li>
+                <li>เมื่อหุ่นยนต์เริ่มขยับ Lidar จะจับคู่กับผนังจริงและแผนที่ ทำให้ตำแหน่ง (Particles) แม่นยำขึ้น</li>
+            </ul>
+        </div>
+
+        <div class="cta-bottom">
+            <a href="chapter4.html" class="btn btn-alt">&larr; ย้อนกลับบทที่ 4</a>
+            <a href="chapter6.html" class="btn">ไปบทที่ 6: Autonomous Navigation (Nav2) &rarr;</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทที่ 3: Computer Vision & MediaPipe | MentorPi M1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --tesla-black: #171a20; --tesla-gray: #393c41; --tesla-white: #ffffff; --earth-bg: #fcfaf7; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Sarabun', sans-serif; }
+        body { background-color: var(--earth-bg); color: var(--tesla-black); line-height: 1.6; }
+        nav { position: fixed; top: 0; width: 100%; padding: 0 40px; height: 56px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(252, 250, 247, 0.8); backdrop-filter: blur(10px); }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--tesla-black); font-size: 0.9rem; font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--tesla-gray); background: rgba(0,0,0,0.05); padding: 5px 15px; border-radius: 4px; margin: -5px -15px; }
+        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; text-decoration: none; color: inherit; display: flex; align-items: center; }
+        .container { max-width: 800px; margin: 0 auto; padding: 120px 20px 80px; }
+        .header-section { margin-bottom: 40px; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+        .chapter-label { color: #cb997e; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 10px; display: block; }
+        h1 { font-size: 2.2rem; font-weight: 600; color: var(--tesla-black); }
+        .content-block { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); margin-bottom: 30px; border: 1px solid #f0f0f0; }
+        h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 20px; color: #6b705c; border-left: 4px solid #6b705c; padding-left: 15px; }
+        h3 { font-size: 1.1rem; font-weight: 600; margin-top: 25px; margin-bottom: 10px; }
+        p { color: var(--tesla-gray); margin-bottom: 15px; font-size: 1.05rem; }
+        ul, ol { margin-left: 20px; margin-bottom: 20px; color: var(--tesla-gray); font-size: 1.05rem; }
+        li { margin-bottom: 8px; }
+        .code-block { background: #1e272e; color: #a4b0be; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 0.9rem; overflow-x: auto; margin-bottom: 20px; }
+        .highlight { color: #ffdd59; }
+        .cta-bottom { text-align: center; margin-top: 60px; }
+        .btn { display: inline-block; padding: 12px 40px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 600; background: var(--tesla-black); color: white; transition: all 0.3s; text-transform: uppercase; margin-bottom: 10px; }
+        .btn-alt { background: #f4f4f4; color: var(--tesla-black); margin-right: 15px; }
+        .btn:hover { opacity: 0.8; }
+        @media (max-width: 768px) { .nav-links { display: none; } .content-block { padding: 25px; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="MentorPi Logo" style="height: 30px; vertical-align: middle; margin-right: 10px;">
+            MENTORPI M1
+        </a>
+        <ul class="nav-links">
+            <li><a href="intro.html">วิศวกรรม</a></li>
+            <li><a href="schedule.html">ตารางอบรม</a></li>
+            <li><a href="https://github.com/alfaXphoori/MentorPi">GitHub</a></li>
+        </ul>
+        <div style="width: 100px;"></div>
+    </nav>
+
+    <div class="container">
+        <section class="header-section">
+            <span class="chapter-label">วันที่ 1: พื้นฐานวิศวกรรมและวิสัยทัศน์ AI</span>
+            <h1>บทที่ 3: Computer Vision & MediaPipe</h1>
+        </section>
+
+        <div class="content-block">
+            <h2>3.1 การประมวลผลภาพด้วย OpenCV</h2>
+            <p>OpenCV เป็นไลบรารีมาตรฐานระดับโลกสำหรับการประมวลผลภาพ เราจะใช้กล้อง Monocular ด้านหน้าเพื่อดึงภาพมาวิเคราะห์</p>
+            <h3>Workshop: Color Tracking & Line Following</h3>
+            <p>การเขียนโปรแกรมให้หุ่นยนต์วิ่งตามเส้น (Line Following) อาศัยหลักการแยกแยะสี (Color Thresholding) โดยแปลงภาพจาก RGB เป็น HSV เพื่อแยกสีที่ต้องการ</p>
+            <ol>
+                <li>เข้าสู่ VNC Desktop และเปิด Terminal เข้าสู่ Docker (<code>./enter_docker.sh</code>)</li>
+                <li>รันโหมดติดตามเส้น/สี:
+                    <div class="code-block">ros2 launch vision_app line_following.launch.py</div>
+                </li>
+                <li>ใช้หน้าต่างตั้งค่า (Dynamic Reconfigure) เพื่อปรับค่า H-S-V ให้หุ่นยนต์มองเห็นเฉพาะ "เส้นสีดำ" หรือ "เส้นสีแดง" บนพื้น</li>
+            </ol>
+        </div>
+
+        <div class="content-block">
+            <h2>3.2 ปฏิสัมพันธ์กับมนุษย์ด้วย MediaPipe</h2>
+            <p><strong>MediaPipe</strong> คือเครื่องมือจาก Google ที่ใช้ AI ตรวจจับโครงสร้างร่างกายของมนุษย์ (Landmarks) เช่น มือและใบหน้า ได้อย่างแม่นยำและรวดเร็ว</p>
+            <h3>Workshop: Face & Gesture Tracking</h3>
+            <p>ในบทนี้เราจะทำให้หุ่นยนต์ "มองเห็นและตอบสนอง" ต่อมนุษย์ได้</p>
+            <ol>
+                <li>รันโหมดตรวจจับมือ (Hand Tracking):
+                    <div class="code-block">ros2 launch mediapipe_app hand_tracking.launch.py</div>
+                    <p><em>ทดลองชูนิ้วบอกทิศทางให้หุ่นยนต์เดินตาม</em></p>
+                </li>
+                <li>รันโหมดติดตามใบหน้า (Face Tracking):
+                    <div class="code-block">ros2 launch mediapipe_app face_tracking.launch.py</div>
+                    <p><em>หุ่นยนต์จะหมุนกล้องและตัวถังเพื่อหันหน้าเข้าหาคุณเสมอ</em></p>
+                </li>
+            </ol>
+            <p style="background: #e8f4fd; color: #0056b3; padding: 10px; border-radius: 6px; font-size: 0.9rem; border-left: 4px solid #3498db;"><strong>💡 กิจกรรมเสริม:</strong> ให้นักเรียนลองแข่งขันกันใช้มือควบคุมหุ่นยนต์ให้วิ่งเข้าเส้นชัยโดยห้ามใช้จอยคอนโทรลเลอร์!</p>
+        </div>
+
+        <div class="cta-bottom">
+            <a href="chapter2.html" class="btn btn-alt">&larr; ย้อนกลับบทที่ 2</a>
+            <a href="chapter4.html" class="btn">ไปบทที่ 4: Machine Learning (YOLO) &rarr;</a>
+        </div>
+    </div>
+</body>
+</html>

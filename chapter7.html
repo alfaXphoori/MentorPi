@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทที่ 7: Final Project | MentorPi M1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --tesla-black: #171a20; --tesla-gray: #393c41; --tesla-white: #ffffff; --earth-bg: #fcfaf7; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Sarabun', sans-serif; }
+        body { background-color: var(--earth-bg); color: var(--tesla-black); line-height: 1.6; }
+        nav { position: fixed; top: 0; width: 100%; padding: 0 40px; height: 56px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(252, 250, 247, 0.8); backdrop-filter: blur(10px); }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--tesla-black); font-size: 0.9rem; font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--tesla-gray); background: rgba(0,0,0,0.05); padding: 5px 15px; border-radius: 4px; margin: -5px -15px; }
+        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; text-decoration: none; color: inherit; display: flex; align-items: center; }
+        .container { max-width: 800px; margin: 0 auto; padding: 120px 20px 80px; }
+        .header-section { margin-bottom: 40px; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+        .chapter-label { color: #cb997e; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 10px; display: block; }
+        h1 { font-size: 2.2rem; font-weight: 600; color: var(--tesla-black); }
+        .content-block { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); margin-bottom: 30px; border: 1px solid #f0f0f0; }
+        h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 20px; color: #6b705c; border-left: 4px solid #6b705c; padding-left: 15px; }
+        h3 { font-size: 1.1rem; font-weight: 600; margin-top: 25px; margin-bottom: 10px; }
+        p { color: var(--tesla-gray); margin-bottom: 15px; font-size: 1.05rem; }
+        ul, ol { margin-left: 20px; margin-bottom: 20px; color: var(--tesla-gray); font-size: 1.05rem; }
+        li { margin-bottom: 8px; }
+        .cta-bottom { text-align: center; margin-top: 60px; }
+        .btn { display: inline-block; padding: 12px 40px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 600; background: var(--tesla-black); color: white; transition: all 0.3s; text-transform: uppercase; margin-bottom: 10px; }
+        .btn-alt { background: #f4f4f4; color: var(--tesla-black); margin-right: 15px; }
+        .btn:hover { opacity: 0.8; }
+        @media (max-width: 768px) { .nav-links { display: none; } .content-block { padding: 25px; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="MentorPi Logo" style="height: 30px; vertical-align: middle; margin-right: 10px;">
+            MENTORPI M1
+        </a>
+        <ul class="nav-links">
+            <li><a href="intro.html">วิศวกรรม</a></li>
+            <li><a href="schedule.html">ตารางอบรม</a></li>
+            <li><a href="https://github.com/alfaXphoori/MentorPi">GitHub</a></li>
+        </ul>
+        <div style="width: 100px;"></div>
+    </nav>
+
+    <div class="container">
+        <section class="header-section">
+            <span class="chapter-label">วันที่ 2: ระบบนำทางอัตโนมัติ</span>
+            <h1>บทที่ 7: Final Project & Certification</h1>
+        </section>
+
+        <div class="content-block" style="border-left: 4px solid #cb997e;">
+            <h2>🏆 ภารกิจรวม: สมาร์ทซิตี้ (Autonomous Smart City)</h2>
+            <p>นำความรู้ทั้งหมดที่เรียนมาตลอด 1.5 วัน มาประยุกต์ใช้เพื่อแก้ปัญหาในสถานการณ์จำลอง หุ่นยนต์จะต้องผสมผสานการทำงานระหว่าง Lidar (นำทาง) และ Camera (สายตา) เข้าด้วยกัน</p>
+            
+            <h3>กติกาและเป้าหมาย:</h3>
+            <ol>
+                <li><strong>Start:</strong> หุ่นยนต์เริ่มต้นจากฐาน และต้องขับออกไปยังจุดส่งของ (Nav2 Multi-point)</li>
+                <li><strong>Vision:</strong> เมื่อเจอ "ป้ายไฟแดง" หุ่นยนต์จะต้องหยุดรอจนกว่าวิทยากรจะสลับเป็น "ป้ายไฟเขียว" (YOLOv5)</li>
+                <li><strong>Avoidance:</strong> ระหว่างทาง ห้ามชนกล่องสิ่งกีดขวางที่ตั้งไว้อย่างเด็ดขาด (Lidar)</li>
+                <li><strong>Finish:</strong> ขับเข้าไปจอดในเขตเส้นชัยที่กำหนดได้อย่างแม่นยำ</li>
+            </ol>
+        </div>
+
+        <div class="content-block">
+            <h2>🎓 พิธีมอบเกียรติบัตร (Wrap-up)</h2>
+            <p>สรุปการเรียนรู้ แลกเปลี่ยนความคิดเห็นเกี่ยวกับการนำเทคโนโลยี ROS2 ไปพัฒนาต่อยอดในระดับมหาวิทยาลัยและระดับอุตสาหกรรม (เช่น โรงงานอัตโนมัติ, AGV, อากาศยานไร้คนขับ) พร้อมรับเกียรติบัตรผ่านการอบรม</p>
+            <p style="text-align: center; margin-top: 30px; font-weight: 600; color: #1e272e;">"The Future is Autonomous. Welcome to the World of ROS2."</p>
+        </div>
+
+        <div class="cta-bottom">
+            <a href="chapter6.html" class="btn btn-alt">&larr; ย้อนกลับบทที่ 6</a>
+            <a href="schedule.html" class="btn">สิ้นสุดการอบรม (กลับหน้าตาราง)</a>
+        </div>
+    </div>
+</body>
+</html>

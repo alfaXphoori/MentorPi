@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทที่ 6: Autonomous Navigation | MentorPi M1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --tesla-black: #171a20; --tesla-gray: #393c41; --tesla-white: #ffffff; --earth-bg: #fcfaf7; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Sarabun', sans-serif; }
+        body { background-color: var(--earth-bg); color: var(--tesla-black); line-height: 1.6; }
+        nav { position: fixed; top: 0; width: 100%; padding: 0 40px; height: 56px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(252, 250, 247, 0.8); backdrop-filter: blur(10px); }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--tesla-black); font-size: 0.9rem; font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--tesla-gray); background: rgba(0,0,0,0.05); padding: 5px 15px; border-radius: 4px; margin: -5px -15px; }
+        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; text-decoration: none; color: inherit; display: flex; align-items: center; }
+        .container { max-width: 800px; margin: 0 auto; padding: 120px 20px 80px; }
+        .header-section { margin-bottom: 40px; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+        .chapter-label { color: #cb997e; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 10px; display: block; }
+        h1 { font-size: 2.2rem; font-weight: 600; color: var(--tesla-black); }
+        .content-block { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); margin-bottom: 30px; border: 1px solid #f0f0f0; }
+        h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 20px; color: #6b705c; border-left: 4px solid #6b705c; padding-left: 15px; }
+        h3 { font-size: 1.1rem; font-weight: 600; margin-top: 25px; margin-bottom: 10px; }
+        p { color: var(--tesla-gray); margin-bottom: 15px; font-size: 1.05rem; }
+        ul, ol { margin-left: 20px; margin-bottom: 20px; color: var(--tesla-gray); font-size: 1.05rem; }
+        li { margin-bottom: 8px; }
+        .code-block { background: #1e272e; color: #a4b0be; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 0.9rem; overflow-x: auto; margin-bottom: 20px; }
+        .highlight { color: #ffdd59; }
+        .cta-bottom { text-align: center; margin-top: 60px; }
+        .btn { display: inline-block; padding: 12px 40px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 600; background: var(--tesla-black); color: white; transition: all 0.3s; text-transform: uppercase; margin-bottom: 10px; }
+        .btn-alt { background: #f4f4f4; color: var(--tesla-black); margin-right: 15px; }
+        .btn:hover { opacity: 0.8; }
+        @media (max-width: 768px) { .nav-links { display: none; } .content-block { padding: 25px; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="MentorPi Logo" style="height: 30px; vertical-align: middle; margin-right: 10px;">
+            MENTORPI M1
+        </a>
+        <ul class="nav-links">
+            <li><a href="intro.html">วิศวกรรม</a></li>
+            <li><a href="schedule.html">ตารางอบรม</a></li>
+            <li><a href="https://github.com/alfaXphoori/MentorPi">GitHub</a></li>
+        </ul>
+        <div style="width: 100px;"></div>
+    </nav>
+
+    <div class="container">
+        <section class="header-section">
+            <span class="chapter-label">วันที่ 2: ระบบนำทางอัตโนมัติ</span>
+            <h1>บทที่ 6: Autonomous Navigation (Nav2)</h1>
+        </section>
+
+        <div class="content-block">
+            <h2>6.1 การวางแผนเส้นทางด้วย Nav2</h2>
+            <p><strong>Navigation2 (Nav2)</strong> คือสมองกลในการขับเคลื่อนอัตโนมัติของ ROS2 โดยใช้แผนที่จากบทที่ 5 มาร่วมวิเคราะห์ เมื่อเราสั่งให้หุ่นยนต์ไปที่เป้าหมาย Nav2 จะทำหน้าที่ 2 ส่วน:</p>
+            <ul>
+                <li><strong>Global Planner:</strong> คำนวณหาเส้นทางที่สั้นที่สุดจากจุดเริ่มต้นไปยังเป้าหมาย</li>
+                <li><strong>Local Planner (DWA):</strong> ควบคุมความเร็วมอเตอร์และหักเลี้ยวหลบสิ่งกีดขวางที่โผล่มาแบบกระทันหัน (Dynamic Obstacles)</li>
+            </ul>
+        </div>
+
+        <div class="content-block">
+            <h2>6.2 Workshop: สั่งหุ่นยนต์วิ่งตามจุดหมาย</h2>
+            <p>เราจะใช้โปรแกรม RViz2 สั่งให้หุ่นยนต์เดินทางไปยังจุดหมายอย่างปลอดภัย</p>
+            <ol>
+                <li>รันระบบ Navigation (ใส่ชื่อแผนที่ที่สร้างไว้):
+                    <div class="code-block">ros2 launch mentorpi_navigation navigation.launch.py map:=/home/pi/hiwonder_ws/src/mentorpi_maps/maps/my_room.yaml</div>
+                </li>
+                <li>ตั้งค่าตำแหน่งเริ่มต้นด้วย <strong>2D Pose Estimate</strong></li>
+                <li>ใช้เครื่องมือ <strong>Nav2 Goal</strong> (ลูกศรสีแดงใน RViz2) คลิกเล็งเป้าหมายและทิศทางที่อยากให้หุ่นยนต์ไปจอด</li>
+                <li>หุ่นยนต์จะสร้างเส้นทางสีเขียวบนแผนที่ และเริ่มขับเคลื่อนตัวเองไปให้ถึงจุดหมายอย่างปลอดภัย!</li>
+            </ol>
+            <p style="background: #e8f4fd; color: #0056b3; padding: 10px; border-radius: 6px; font-size: 0.9rem; border-left: 4px solid #3498db;"><strong>💡 กิจกรรมเสริม:</strong> ระหว่างที่หุ่นยนต์กำลังขับไปเป้าหมาย ให้นักเรียนลองเดินตัดหน้า! สังเกตการทำงานของ Local Planner ที่จะพยายามอ้อมหลบคนแบบ Real-time</p>
+        </div>
+
+        <div class="cta-bottom">
+            <a href="chapter5.html" class="btn btn-alt">&larr; ย้อนกลับบทที่ 5</a>
+            <a href="chapter7.html" class="btn">ไปบทที่ 7: Final Project & Certification &rarr;</a>
+        </div>
+    </div>
+</body>
+</html>
