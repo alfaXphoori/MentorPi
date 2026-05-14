@@ -8,16 +8,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --tesla-black: #171a20; --tesla-gray: #393c41; --tesla-white: #ffffff; --accent: #3e6ae1; }
+        :root { 
+            --earth-bg: #fcfaf7; 
+            --earth-text: #2d3436; 
+            --earth-accent-1: #6b705c; /* Olive Green */
+            --earth-accent-2: #cb997e; /* Terracotta */
+            --earth-surface: rgba(255, 255, 255, 0.9);
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Sarabun', -apple-system, sans-serif; }
-        body { background-color: var(--tesla-white); color: var(--tesla-black); overflow-x: hidden; }
+        body { background-color: var(--earth-bg); color: var(--earth-text); overflow-x: hidden; }
         
         /* Nav */
-        nav { position: fixed; top: 0; width: 100%; padding: 0 40px; height: 56px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; transition: background 0.3s; }
+        nav { position: fixed; top: 0; width: 100%; padding: 0 40px; height: 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(252, 250, 247, 0.8); backdrop-filter: blur(10px); }
         .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--tesla-black); font-size: 0.9rem; font-weight: 600; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--tesla-gray); background: rgba(0,0,0,0.05); padding: 5px 15px; border-radius: 4px; margin: -5px -15px; }
-        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; text-decoration: none; color: inherit; }
+        .nav-links a { text-decoration: none; color: var(--earth-text); font-size: 0.9rem; font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--earth-accent-1); }
+        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; text-decoration: none; color: inherit; border-bottom: 2px solid var(--earth-accent-2); }
 
         /* Hero Section */
         .hero {
@@ -27,32 +33,33 @@
             justify-content: space-between;
             align-items: center;
             padding: 120px 20px 40px;
-            background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), 
+            background: linear-gradient(rgba(252, 250, 247, 0.4), rgba(252, 250, 247, 0.4)), 
                         url('https://media.robotshop.com/main/h/hiw/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving-1.jpg');
             background-size: cover;
             background-position: center;
             text-align: center;
         }
         
-        .hero-text h1 { font-size: 3rem; font-weight: 600; letter-spacing: -1px; margin-bottom: 10px; color: var(--tesla-black); }
-        .hero-text p { font-size: 1.1rem; color: var(--tesla-gray); }
+        .hero-text h1 { font-size: 3rem; font-weight: 600; letter-spacing: -1px; margin-bottom: 10px; color: #1e272e; text-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .hero-text p { font-size: 1.2rem; color: #4b5e65; font-weight: 400; }
 
         .cta-container { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 600px; padding: 0 20px; }
         .btn { 
-            padding: 12px 0; 
-            border-radius: 4px; 
+            padding: 14px 0; 
+            border-radius: 6px; 
             text-decoration: none; 
             font-size: 0.9rem; 
             font-weight: 600; 
             transition: all 0.3s ease;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .btn-primary { background: rgba(23, 26, 32, 0.8); color: white; backdrop-filter: blur(8px); }
-        .btn-secondary { background: rgba(244, 244, 244, 0.65); color: var(--tesla-gray); backdrop-filter: blur(8px); }
-        .btn:hover { opacity: 0.8; transform: scale(1.01); }
+        .btn-primary { background: var(--earth-accent-1); color: white; box-shadow: 0 4px 15px rgba(107, 112, 92, 0.3); }
+        .btn-secondary { background: var(--earth-accent-2); color: white; box-shadow: 0 4px 15px rgba(203, 153, 126, 0.3); }
+        .btn:hover { transform: translateY(-2px); opacity: 0.9; box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Simplified for demo, can add hamburger later */
+            .nav-links { display: none; }
             .hero-text h1 { font-size: 2.5rem; }
         }
 
@@ -71,13 +78,13 @@
             <li><a href="schedule.html">ตารางอบรม</a></li>
             <li><a href="https://github.com/alfaXphoori/MentorPi">GitHub</a></li>
         </ul>
-        <div style="width: 100px;"></div> <!-- Spacer for symmetry -->
+        <div style="width: 100px;"></div>
     </nav>
 
     <section class="hero">
         <div class="hero-text">
             <h1>MentorPi M1</h1>
-            <p>นิยามใหม่แห่งการเรียนรู้ ROS2 และ AI</p>
+            <p>นิยามใหม่แห่งการเรียนรู้ ROS2 และ AI ในสไตล์ที่แตกต่าง</p>
         </div>
 
         <div class="cta-container">
@@ -87,8 +94,8 @@
     </section>
 
     <footer>
-        <div style="padding: 20px; text-align: center; color: var(--tesla-gray); font-size: 0.8rem;">
-            MentorPi Training © 2026
+        <div style="padding: 20px; text-align: center; color: var(--earth-accent-1); font-size: 0.8rem; font-weight: 600;">
+            MentorPi Training © 2026 | Nature meets Robotics
         </div>
     </footer>
 </body>
