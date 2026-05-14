@@ -84,37 +84,84 @@
 
         <div class="content-block">
             <h2>1.1 การเชื่อมต่อเครือข่าย (Network Connection)</h2>
-            <p>หุ่นยนต์ MentorPi M1 รองรับการเชื่อมต่อผ่าน Wi-Fi เพื่อให้เราสามารถส่งคำสั่งและดูข้อมูลเซนเซอร์ได้แบบไร้สาย โดยมี 2 โหมดหลัก:</p>
-            <ul>
-                <li><strong>AP Mode (Access Point):</strong> หุ่นยนต์ปล่อยสัญญาณ Wi-Fi ออกมาเอง (ชื่อ HW-xxxx) เหมาะสำหรับใช้เมื่อไม่มีอินเทอร์เน็ตในห้องเรียน</li>
-                <li><strong>LAN Mode:</strong> เชื่อมต่อหุ่นยนต์เข้ากับ Router ของห้องเรียน เหมาะสำหรับการใช้งานพร้อมกันหลายตัว</li>
-            </ul>
+            <p>หุ่นยนต์ MentorPi M1 จำเป็นต้องเชื่อมต่อเครือข่ายเพื่อให้เราสามารถส่งคำสั่งและดูข้อมูลเซนเซอร์ได้แบบไร้สาย โดยระบบรองรับ 2 โหมดหลัก ดังนี้:</p>
+            
+            <h3>โหมดที่ 1: AP Mode (Access Point) - แนะนำสำหรับการเริ่มต้น</h3>
+            <p>ในโหมดนี้ หุ่นยนต์จะทำหน้าที่เป็น Router ปล่อยสัญญาณ Wi-Fi ออกมาเอง เหมาะสำหรับใช้ในกรณีที่ห้องเรียนไม่มีอินเทอร์เน็ต หรือต้องการเชื่อมต่อแบบ 1 ต่อ 1</p>
+            <ol>
+                <li>เปิดสวิตช์หุ่นยนต์ และรอประมาณ 1-2 นาทีจนกว่าระบบปฏิบัติการจะบูตเสร็จ</li>
+                <li>ใช้คอมพิวเตอร์ของคุณค้นหาสัญญาณ Wi-Fi ที่ชื่อขึ้นต้นด้วย <strong>HW-xxxxxx</strong> (เช่น HW-123456)</li>
+                <li>กรอกรหัสผ่านเริ่มต้น: <span class="highlight" style="background: #1e272e; padding: 2px 6px; border-radius: 4px;">hiwonder</span></li>
+                <li>เมื่อเชื่อมต่อสำเร็จ IP Address ของหุ่นยนต์จะถูกกำหนดเป็น <strong>192.168.149.1</strong> เสมอ</li>
+            </ol>
+
+            <h3>โหมดที่ 2: LAN Mode (Local Area Network)</h3>
+            <p>ให้หุ่นยนต์ไปเกาะ Wi-Fi ของห้องเรียน เหมาะสำหรับการใช้อินเทอร์เน็ต (เช่น โหลดโมเดล AI) หรือเมื่อมีหุ่นยนต์หลายตัวในเครือข่ายเดียวกัน</p>
+            <ol>
+                <li>เชื่อมต่อหุ่นยนต์ผ่าน AP Mode ก่อน หรือเสียบสาย LAN / จอ HDMI</li>
+                <li>ใช้คำสั่งเชื่อมต่อ Wi-Fi ผ่าน Terminal หรือตั้งค่าผ่านหน้า VNC Desktop</li>
+                <li>เมื่อหุ่นยนต์ได้ IP Address ใหม่จาก Router ของห้องเรียน (เช่น 192.168.1.xxx) ให้จด IP นั้นไว้ใช้สำหรับการรีโมทในครั้งต่อไป</li>
+            </ol>
+            <p style="background: #fff3cd; color: #856404; padding: 10px; border-radius: 6px; font-size: 0.9rem; border-left: 4px solid #ffeaa7;"><strong>💡 Tip วิทยากร:</strong> แนะนำให้ใช้เครื่องมืออย่าง <code>Advanced IP Scanner</code> หรือดูผ่านแอปมือถือ <code>Fing</code> เพื่อหา IP ของหุ่นยนต์ในกรณีที่ใช้โหมด LAN ครับ</p>
         </div>
 
         <div class="content-block">
             <h2>1.2 การเข้าถึงหุ่นยนต์ (Remote Access)</h2>
-            <p>เมื่อเชื่อมต่อ Wi-Fi สำเร็จ เราต้องเข้าไปสั่งงานบอร์ด Raspberry Pi 5 ที่อยู่บนตัวหุ่นยนต์ ผ่านเครื่องมือ 2 ตัวหลัก:</p>
-            <h3>1. SSH (Secure Shell)</h3>
-            <p>ใช้สำหรับพิมพ์คำสั่งผ่าน Terminal (Command Line) โดยตรง เหมาะสำหรับการเปิดใช้งาน Node ต่างๆ ของ ROS2</p>
+            <p>เมื่อเชื่อมต่อ Wi-Fi สำเร็จ เราต้องเข้าไปสั่งงานบอร์ด Raspberry Pi 5 ผ่านเครือข่าย โดยไม่ต้องต่อจอภาพหรือคีย์บอร์ดเข้ากับตัวหุ่นยนต์โดยตรง (Headless Setup) ซึ่งเราจะใช้เครื่องมือ 2 รูปแบบ:</p>
+            
+            <h3>1. SSH (Secure Shell) - สำหรับการสั่งงานผ่าน Command Line</h3>
+            <p>SSH คือการรีโมทเข้าไปพิมพ์คำสั่ง (Terminal) เป็นวิธีที่กินทรัพยากรน้อยและรวดเร็วที่สุด เหมาะสำหรับการสั่งรันโค้ด หรือตรวจสอบสถานะระบบ</p>
+            <ol>
+                <li><strong>ผู้ใช้ Windows:</strong> สามารถเปิดโปรแกรม <code>Command Prompt</code> (cmd) หรือ <code>PowerShell</code></li>
+                <li><strong>ผู้ใช้ Mac / Linux:</strong> สามารถเปิดโปรแกรม <code>Terminal</code> ได้เลย</li>
+                <li>พิมพ์คำสั่งต่อไปนี้ (สมมติว่าใช้ AP Mode IP: 192.168.149.1):</li>
+            </ol>
             <div class="code-block">
-                ssh <span class="highlight">pi</span>@<span class="highlight">192.168.149.1</span><br>
-                # รหัสผ่านเริ่มต้นคือ: pi
+                ssh <span class="highlight">pi</span>@<span class="highlight">192.168.149.1</span>
             </div>
+            <ul style="margin-top: -10px;">
+                <li><strong>Username:</strong> <code>pi</code></li>
+                <li><strong>Password:</strong> <code>pi</code> (ขณะพิมพ์รหัสผ่าน หน้าจอจะไม่แสดงตัวอักษร ให้พิมพ์แล้วกด Enter ได้เลย)</li>
+            </ul>
 
-            <h3>2. VNC Viewer (Remote Desktop)</h3>
-            <p>ใช้สำหรับดูหน้าจอ Desktop ของหุ่นยนต์แบบกราฟิก (GUI) จำเป็นอย่างยิ่งเมื่อเราต้องการดูภาพจากกล้อง หรือดูการสร้างแผนที่ (Map)</p>
+            <h3>2. VNC Viewer (Virtual Network Computing) - สำหรับการดูหน้าจอ Desktop</h3>
+            <p>VNC อนุญาตให้เราเห็นหน้าจอ Ubuntu ของหุ่นยนต์แบบกราฟิก (GUI) เหมือนเราไปนั่งอยู่หน้าจอจริงๆ ซึ่งจำเป็นมากเมื่อเราต้องทำ Computer Vision (ดูภาพจากกล้อง) หรือดูแผนที่ (SLAM)</p>
+            <ol>
+                <li>ดาวน์โหลดและติดตั้งโปรแกรม <a href="https://www.realvnc.com/en/connect/download/viewer/" target="_blank" style="color: #cb997e;">RealVNC Viewer</a> ลงบนคอมพิวเตอร์ของคุณ</li>
+                <li>เปิดโปรแกรม VNC Viewer ขึ้นมา</li>
+                <li>ในช่อง Address Bar (Enter a VNC Server address or search) ให้พิมพ์ IP ของหุ่นยนต์: <code>192.168.149.1</code> แล้วกด Enter</li>
+                <li>เมื่อมีหน้าต่างเตือนเรื่องความปลอดภัย ให้กด <strong>Continue</strong></li>
+                <li>ระบบจะถามรหัสผ่าน (Username จะเป็น <code>pi</code> อัตโนมัติ) ให้กรอกรหัสผ่าน: <span class="highlight" style="background: #1e272e; padding: 2px 6px; border-radius: 4px;">pi</span></li>
+            </ol>
+            <p style="background: #e8f4fd; color: #0056b3; padding: 10px; border-radius: 6px; font-size: 0.9rem; border-left: 4px solid #3498db;"><strong>📝 Note:</strong> เมื่อเข้าสู่หน้าจอ VNC สำเร็จ คุณจะเห็นหน้าต่าง Desktop ของ Ubuntu 22.04 คุณสามารถเปิด Terminal ในนี้เพื่อทำงานต่างๆ ได้เช่นกัน</p>
         </div>
 
         <div class="content-block">
             <h2>1.3 สภาพแวดล้อม Docker (Docker Environment)</h2>
-            <p>Hiwonder ออกแบบให้โปรแกรมของหุ่นยนต์ทั้งหมดทำงานอยู่ภายใน <strong>Docker Container</strong> เพื่อความเสถียรและป้องกันระบบปฏิบัติการหลัก (Host OS) เสียหาย</p>
-            <h3>คำสั่งพื้นฐานที่ต้องรู้</h3>
-            <ul>
-                <li>เข้าสู่ Docker Container ของหุ่นยนต์:<br>
+            <p><strong>สำคัญมาก:</strong> โค้ดและไลบรารี ROS2 ทั้งหมดของ MentorPi M1 ไม่ได้ถูกติดตั้งบนเครื่อง Raspberry Pi โดยตรง แต่ถูกติดตั้งไว้ใน <strong>Docker Container</strong> (สภาพแวดล้อมจำลอง) เพื่อป้องกันไม่ให้ระบบหลักพังเมื่อมีการแก้ไขไฟล์ และช่วยให้ระบบทำงานได้เสถียรที่สุด</p>
+            
+            <h3>การเข้าสู่ Docker Container</h3>
+            <p>ทุกครั้งที่คุณเปิด Terminal ใหม่ (ไม่ว่าจะผ่าน SSH หรือใน VNC) คุณ<strong>ต้องเข้าสู่ Docker ก่อนเสมอ</strong> จึงจะสามารถใช้คำสั่ง <code>ros2</code> ได้</p>
+            <ol>
+                <li>เปิด Terminal</li>
+                <li>ไปที่โฟลเดอร์ของโปรเจกต์ (ปกติเมื่อล็อกอินเข้ามาจะอยู่ที่โฟลเดอร์ Home <code>/home/pi</code> อยู่แล้ว):
+                    <div class="code-block">cd ~</div>
+                </li>
+                <li>รันสคริปต์เพื่อเข้าสู่ Docker:
                     <div class="code-block">./enter_docker.sh</div>
                 </li>
-                <li>ทุกครั้งที่จะรันคำสั่ง ROS2 จะต้องอยู่ในโหมด Docker เสมอ (สังเกตได้จากชื่อ User ใน Terminal จะเปลี่ยนไป)</li>
+            </ol>
+            
+            <h3>วิธีสังเกตว่าอยู่ใน Docker หรือยัง?</h3>
+            <p>ให้สังเกตที่บรรทัดคำสั่ง (Prompt) ใน Terminal:</p>
+            <ul>
+                <li><strong>อยู่นอก Docker (Host OS):</strong> <code>pi@MentorPi:~$</code></li>
+                <li><strong>อยู่ใน Docker แล้ว:</strong> <code>root@MentorPi:~/hiwonder_ws#</code> (สังเกตว่าชื่อ User จะเปลี่ยนเป็น <strong>root</strong> และ Path จะเปลี่ยนเป็น <strong>hiwonder_ws</strong>)</li>
             </ul>
+
+            <h3>Workspace (พื้นที่ทำงาน)</h3>
+            <p>โค้ดทั้งหมดที่ใช้ควบคุมหุ่นยนต์จะถูกเก็บไว้ที่ <code>/home/pi/hiwonder_ws/</code> ภายใน Docker ซึ่งจะเชื่อมโยง (Mount) กับไฟล์ในระบบหลัก หากคุณแก้ไขไฟล์ในโฟลเดอร์นี้ผ่าน VNC ไฟล์ใน Docker ก็จะเปลี่ยนตามไปด้วย</p>
+            <p style="background: #f8d7da; color: #721c24; padding: 10px; border-radius: 6px; font-size: 0.9rem; border-left: 4px solid #dc3545;"><strong>⚠️ ข้อควรระวัง:</strong> หากคุณพิมพ์คำสั่ง <code>ros2 ...</code> แล้วเจอ Error ว่า <em>"command not found"</em> นั่นแปลว่าคุณลืมรันคำสั่ง <code>./enter_docker.sh</code> ครับ!</p>
         </div>
 
         <div class="cta-bottom">
