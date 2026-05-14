@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทที่ 2: ระบบเซนเซอร์และ Lidar เบื้องต้น | MentorPi M1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --tesla-black: #171a20; --tesla-gray: #393c41; --tesla-white: #ffffff; --earth-bg: #fcfaf7; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Sarabun', sans-serif; }
+        body { background-color: var(--earth-bg); color: var(--tesla-black); line-height: 1.6; }
+        
+        /* Nav */
+        nav { position: fixed; top: 0; width: 100%; padding: 0 40px; height: 56px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(252, 250, 247, 0.8); backdrop-filter: blur(10px); }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--tesla-black); font-size: 0.9rem; font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--tesla-gray); background: rgba(0,0,0,0.05); padding: 5px 15px; border-radius: 4px; margin: -5px -15px; }
+        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; text-decoration: none; color: inherit; display: flex; align-items: center; }
+
+        /* Content */
+        .container { max-width: 800px; margin: 0 auto; padding: 120px 20px 80px; }
+        
+        .header-section { margin-bottom: 40px; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+        .chapter-label { color: #cb997e; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 10px; display: block; }
+        h1 { font-size: 2.2rem; font-weight: 600; color: var(--tesla-black); }
+
+        .content-block { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); margin-bottom: 30px; border: 1px solid #f0f0f0; }
+        h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 20px; color: #6b705c; border-left: 4px solid #6b705c; padding-left: 15px; }
+        h3 { font-size: 1.1rem; font-weight: 600; margin-top: 25px; margin-bottom: 10px; }
+        p { color: var(--tesla-gray); margin-bottom: 15px; font-size: 1.05rem; }
+        ul, ol { margin-left: 20px; margin-bottom: 20px; color: var(--tesla-gray); font-size: 1.05rem; }
+        li { margin-bottom: 8px; }
+        
+        .code-block { background: #1e272e; color: #a4b0be; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 0.9rem; overflow-x: auto; margin-bottom: 20px; }
+        .highlight { color: #ffdd59; }
+
+        .cta-bottom { text-align: center; margin-top: 60px; }
+        .btn { display: inline-block; padding: 12px 40px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 600; background: var(--tesla-black); color: white; transition: all 0.3s; text-transform: uppercase; }
+        .btn-alt { background: #f4f4f4; color: var(--tesla-black); margin-right: 15px; }
+        .btn:hover { opacity: 0.8; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .content-block { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="MentorPi Logo" style="height: 30px; vertical-align: middle; margin-right: 10px;">
+            MENTORPI M1
+        </a>
+        <ul class="nav-links">
+            <li><a href="intro.html">วิศวกรรม</a></li>
+            <li><a href="schedule.html">ตารางอบรม</a></li>
+            <li><a href="https://github.com/alfaXphoori/MentorPi">GitHub</a></li>
+        </ul>
+        <div style="width: 100px;"></div>
+    </nav>
+
+    <div class="container">
+        <section class="header-section">
+            <span class="chapter-label">วันที่ 1: พื้นฐานวิศวกรรมและวิสัยทัศน์ AI</span>
+            <h1>บทที่ 2: ระบบเซนเซอร์และ Lidar เบื้องต้น</h1>
+        </section>
+
+        <div class="content-block">
+            <h2>2.1 ทำความรู้จัก Lidar (STL-19P)</h2>
+            <p><strong>Lidar (Light Detection and Ranging)</strong> คือเซนเซอร์หลักที่เปรียบเสมือน "ดวงตาที่วัดระยะทางได้" ของหุ่นยนต์ MentorPi M1 โดยรุ่นที่ติดตั้งมาคือ <strong>STL-19P (TOF Lidar)</strong> ซึ่งมีคุณสมบัติดังนี้:</p>
+            <ul>
+                <li><strong>สแกนรอบทิศทาง 360 องศา:</strong> หัว Lidar จะหมุนตลอดเวลาเพื่อยิงแสงเลเซอร์และรับการสะท้อนกลับมาเพื่อประเมินสภาพแวดล้อม</li>
+                <li><strong>ระยะการมองเห็น 12 เมตร:</strong> สแกนได้ไกลและครอบคลุมพื้นที่ห้องขนาดใหญ่</li>
+                <li><strong>หลักการ TOF (Time of Flight):</strong> วัดระยะทางจากการจับเวลาที่แสงเลเซอร์เดินทางไปกระทบวัตถุและสะท้อนกลับมาที่เซนเซอร์</li>
+            </ul>
+        </div>
+
+        <div class="content-block">
+            <h2>2.2 Workshop 1: หุ่นยนต์เฝ้ายาม (Lidar Guarding)</h2>
+            <p>ในภารกิจนี้ หุ่นยนต์จะใช้ Lidar สแกนพื้นที่เพื่อตรวจจับความเคลื่อนไหว (Intruder) ที่เข้ามาในรัศมีป้องกัน เมื่อพบสิ่งแปลกปลอม หุ่นยนต์จะหมุนตัวหันหน้าเข้าหาเป้าหมายโดยอัตโนมัติเพื่อทำการ "จ้องมอง" หรือแจ้งเตือน</p>
+            <h3>วิธีการเรียกใช้งาน (ROS2)</h3>
+            <ol>
+                <li>เข้าสู่ระบบ Docker ด้วยคำสั่ง <code>./enter_docker.sh</code></li>
+                <li>พิมพ์คำสั่งเพื่อเปิดโหมด Guarding:
+                    <div class="code-block">ros2 launch lidar_app lidar_guarding.launch.py</div>
+                </li>
+                <li><strong>ทดลองจริง:</strong> ให้ตัวแทนนักเรียนเดินเข้าไปใกล้หุ่นยนต์ในรัศมี 1-2 เมตร จะสังเกตเห็นว่าล้อ Mecanum จะขยับหมุนตัวหุ่นยนต์ให้หันตามการเคลื่อนไหวของนักเรียนทันที!</li>
+            </ol>
+        </div>
+
+        <div class="content-block">
+            <h2>2.3 Workshop 2: การหลบหลีกสิ่งกีดขวาง (Obstacle Avoidance)</h2>
+            <p>นี่คือระบบความปลอดภัยขั้นพื้นฐานที่สุดของการทำ Autonomous Driving หุ่นยนต์จะอ่านค่าระยะทางจาก Lidar อย่างต่อเนื่อง หากพบสิ่งกีดขวางในระยะที่ตั้งค่าไว้ (Danger Zone) หุ่นยนต์จะตัดสินใจ <strong>หยุด</strong> และ <strong>หันเลี้ยว</strong> เพื่อหาเส้นทางที่ปลอดภัย</p>
+            <h3>วิธีการเรียกใช้งาน (ROS2)</h3>
+            <ol>
+                <li>ตรวจสอบให้แน่ใจว่าปิด Node ของโหมด Guarding แล้ว (กด <code>Ctrl + C</code> ใน Terminal เดิม)</li>
+                <li>พิมพ์คำสั่งเพื่อเปิดโหมด Avoidance:
+                    <div class="code-block">ros2 launch lidar_app lidar_avoidance.launch.py</div>
+                </li>
+                <li><strong>ทดลองจริง:</strong> หุ่นยนต์จะเริ่มเคลื่อนที่ไปข้างหน้า หากคุณนำกล่องกระดาษมาขวางทาง หุ่นยนต์จะเบรกและหักเลี้ยวหลบเองโดยอัตโนมัติ</li>
+            </ol>
+            <p style="background: #e8f4fd; color: #0056b3; padding: 10px; border-radius: 6px; font-size: 0.9rem; border-left: 4px solid #3498db;"><strong>💡 กิจกรรมเสริม:</strong> ให้นักเรียนช่วยกันนำกล่องมาตั้งเป็น "เขาวงกต" ง่ายๆ แล้วปล่อยให้หุ่นยนต์ใช้ Lidar ค่อยๆ หาทางออกด้วยโหมด Obstacle Avoidance ดูครับ!</p>
+        </div>
+
+        <div class="cta-bottom">
+            <a href="chapter1.html" class="btn btn-alt">&larr; ย้อนกลับบทที่ 1</a>
+            <a href="schedule.html" class="btn">กลับสู่ตารางอบรม</a>
+        </div>
+    </div>
+</body>
+</html>
