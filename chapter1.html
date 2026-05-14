@@ -68,6 +68,21 @@
         </section>
 
         <div class="content-block">
+            <h2>1.0 ทำความรู้จักฮาร์ดแวร์ (Hardware Overview)</h2>
+            <p>ก่อนเริ่มการเชื่อมต่อ เรามาทำความรู้จักส่วนประกอบสำคัญของหุ่นยนต์ MentorPi M1 กันก่อนครับ</p>
+            <div style="text-align: center; margin: 30px 0;">
+                <img src="images/equipment.jpeg" alt="MentorPi Hardware Architecture" style="max-width: 100%; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 1px solid #eee;">
+            </div>
+            <ul>
+                <li><strong>Raspberry Pi 5:</strong> บอร์ดคอมพิวเตอร์หลักที่ทำหน้าที่เป็น "สมอง" ควบคุมทุกระบบ</li>
+                <li><strong>Expansion Board:</strong> แผงวงจรส่วนขยายที่เชื่อมต่อกับมอเตอร์ แบตเตอรี่ และเซนเซอร์ระดับล่าง</li>
+                <li><strong>Mecanum Wheels:</strong> ล้ออัจฉริยะ 4 ทิศทาง พร้อมมอเตอร์เกียร์โลหะและ Encoder</li>
+                <li><strong>TOF Lidar (STL-19P):</strong> เซนเซอร์หมุนอยู่ด้านบน ทำหน้าที่สแกนพื้นที่รอบตัวแบบ 360 องศา (SLAM)</li>
+                <li><strong>AI Monocular Camera:</strong> กล้องด้านหน้าสำหรับตรวจจับภาพและใช้ทำงานร่วมกับโมเดล AI (เช่น YOLO)</li>
+            </ul>
+        </div>
+
+        <div class="content-block">
             <h2>1.1 การเชื่อมต่อเครือข่าย (Network Connection)</h2>
             <p>หุ่นยนต์ MentorPi M1 รองรับการเชื่อมต่อผ่าน Wi-Fi เพื่อให้เราสามารถส่งคำสั่งและดูข้อมูลเซนเซอร์ได้แบบไร้สาย โดยมี 2 โหมดหลัก:</p>
             <ul>
