@@ -8,39 +8,37 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --earth-bg: #fcfaf7; 
-            --earth-text: #2d3436; 
-            --earth-accent-1: #6b705c; 
-            --earth-accent-2: #cb997e; 
-        }
+        :root { --tesla-black: #171a20; --tesla-gray: #393c41; --tesla-white: #ffffff; --earth-bg: #fcfaf7; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Sarabun', sans-serif; }
-        body { background-color: var(--earth-bg); color: var(--earth-text); }
+        body { background-color: var(--earth-bg); color: var(--tesla-black); }
         
         /* Nav */
-        nav { position: fixed; top: 0; width: 100%; padding: 0 40px; height: 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(252, 250, 247, 0.8); backdrop-filter: blur(10px); }
+        nav { position: fixed; top: 0; width: 100%; padding: 0 40px; height: 56px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(252, 250, 247, 0.8); backdrop-filter: blur(10px); }
         .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--earth-text); font-size: 0.9rem; font-weight: 600; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--earth-accent-1); }
-        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; text-decoration: none; color: inherit; border-bottom: 2px solid var(--earth-accent-2); }
+        .nav-links a { text-decoration: none; color: var(--tesla-black); font-size: 0.9rem; font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--tesla-gray); background: rgba(0,0,0,0.05); padding: 5px 15px; border-radius: 4px; margin: -5px -15px; }
+        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; text-decoration: none; color: inherit; }
 
         .container { max-width: 800px; margin: 0 auto; padding: 120px 20px 60px; }
-        h1 { font-size: 2.5rem; font-weight: 600; text-align: center; margin-bottom: 20px; color: #1e272e; }
-        .subtitle { color: #4b5e65; text-align: center; margin-bottom: 80px; font-size: 1.1rem; }
+        h1 { font-size: 2.5rem; font-weight: 600; text-align: center; margin-bottom: 20px; color: var(--tesla-black); }
+        .subtitle { color: var(--tesla-gray); text-align: center; margin-bottom: 80px; font-size: 1.1rem; }
 
         .roadmap { position: relative; }
-        .day-block { margin-bottom: 80px; padding: 30px; background: white; border-radius: 12px; border-left: 6px solid var(--earth-accent-2); box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .day-block { margin-bottom: 80px; padding-left: 40px; border-left: 1px solid #e2e2e2; position: relative; }
+        .day-block::before { content: ''; position: absolute; left: -5px; top: 5px; width: 9px; height: 9px; background: var(--tesla-black); border-radius: 50%; }
         
-        .day-block h2 { font-size: 1.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; color: var(--earth-accent-2); }
+        .day-block h2 { font-size: 1.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: var(--tesla-black); }
         .event { margin-bottom: 25px; }
-        .event h4 { font-size: 1rem; color: #1e272e; margin-bottom: 8px; font-weight: 600; }
-        .event p { color: #4b5e65; font-size: 0.95rem; line-height: 1.6; }
+        .event h4 { font-size: 1rem; color: var(--tesla-black); margin-bottom: 5px; font-weight: 600; }
+        .event p { color: var(--tesla-gray); font-size: 0.95rem; line-height: 1.5; }
 
         .cta-bottom { margin-top: 60px; text-align: center; }
-        .btn { display: inline-block; padding: 14px 60px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 600; background: var(--earth-accent-1); color: white; transition: all 0.3s; text-transform: uppercase; box-shadow: 0 4px 15px rgba(107, 112, 92, 0.3); }
-        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+        .btn { display: inline-block; padding: 12px 60px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 600; background: var(--tesla-black); color: white; transition: all 0.3s; text-transform: uppercase; }
+        .btn:hover { opacity: 0.8; transform: scale(1.01); }
 
-        @media (max-width: 768px) { .nav-links { display: none; } }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
     </style>
 </head>
 <body>
