@@ -17,39 +17,49 @@
         .nav-links { display: flex; gap: 30px; list-style: none; }
         .nav-links a { text-decoration: none; color: var(--tesla-black); font-size: 0.9rem; font-weight: 600; transition: color 0.3s; }
         .nav-links a:hover { color: var(--tesla-gray); background: rgba(0,0,0,0.05); padding: 5px 15px; border-radius: 4px; margin: -5px -15px; }
-        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; text-decoration: none; color: inherit; }
+        .logo { font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; text-decoration: none; color: inherit; display: flex; align-items: center; }
 
         /* Content */
-        .container { max-width: 1100px; margin: 0 auto; padding: 120px 20px 80px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 120px 20px 80px; }
         
-        .header-section { text-align: center; margin-bottom: 80px; }
+        .header-section { text-align: center; margin-bottom: 60px; }
         h1 { font-size: 2.8rem; font-weight: 600; margin-bottom: 20px; letter-spacing: -1px; }
-        .subtitle { color: var(--tesla-gray); font-size: 1.2rem; max-width: 700px; margin: 0 auto; line-height: 1.6; }
+        .subtitle { color: var(--tesla-gray); font-size: 1.1rem; max-width: 700px; margin: 0 auto; line-height: 1.6; }
 
-        .hero-img { width: 100%; max-width: 800px; display: block; margin: 0 auto 100px; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .hero-img { width: 100%; max-width: 700px; display: block; margin: 0 auto 80px; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
 
-        /* Feature Grid */
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 100px; }
-        .feature-item { padding: 40px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); transition: transform 0.3s ease; border: 1px solid #f0f0f0; }
-        .feature-item:hover { transform: translateY(-5px); }
-        .feature-item h3 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: var(--tesla-black); }
-        .feature-item p { color: var(--tesla-gray); line-height: 1.7; font-size: 1rem; }
+        /* Long Card Row Layout */
+        .feature-list { display: flex; flex-direction: column; gap: 25px; margin-bottom: 80px; }
+        .feature-card { 
+            padding: 35px; 
+            background: white; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02); 
+            border: 1px solid #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover { transform: scale(1.01); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .feature-card h3 { font-size: 1rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--tesla-black); border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .feature-card p { color: var(--tesla-gray); line-height: 1.7; font-size: 1.05rem; }
 
         /* Software Section */
-        .software-section { background: white; padding: 80px 40px; border-radius: 12px; margin-bottom: 80px; text-align: center; border: 1px solid #f0f0f0; }
-        .software-section h2 { margin-bottom: 40px; font-weight: 600; }
-        .tech-stack { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
-        .tech-tag { padding: 10px 25px; background: #f4f4f4; border-radius: 50px; font-weight: 600; font-size: 0.9rem; color: var(--tesla-gray); }
+        .software-section { background: white; padding: 60px 40px; border-radius: 12px; margin-bottom: 60px; text-align: center; border: 1px solid #f0f0f0; }
+        .software-section h2 { margin-bottom: 30px; font-weight: 600; font-size: 1.5rem; }
+        .tech-stack { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .tech-tag { padding: 8px 20px; background: #f4f4f4; border-radius: 4px; font-weight: 600; font-size: 0.85rem; color: var(--tesla-gray); }
 
-        .cta-bottom { text-align: center; margin-top: 100px; }
-        .btn { display: inline-block; padding: 15px 80px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; transition: all 0.3s; }
+        .cta-bottom { text-align: center; margin-top: 80px; }
+        .btn { display: inline-block; padding: 15px 80px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; transition: all 0.3s; width: 100%; max-width: 400px; }
         .btn-dark { background: var(--tesla-black); color: white; }
         .btn-dark:hover { opacity: 0.8; }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
             h1 { font-size: 2.2rem; }
-            .feature-grid { grid-template-columns: 1fr; }
+            .feature-card { padding: 25px; }
         }
     </style>
 </head>
@@ -70,27 +80,27 @@
     <div class="container">
         <section class="header-section">
             <h1>Engineering Excellence</h1>
-            <p class="subtitle">MentorPi M1 คือหุ่นยนต์ ROS2 AI ระดับมืออาชีพที่ออกแบบมาเพื่อการเรียนรู้สถาปัตยกรรมหุ่นยนต์สมัยใหม่ที่แท้จริง</p>
+            <p class="subtitle">สถาปัตยกรรมหุ่นยนต์ระดับสูงที่รวมทุกเทคโนโลยีแห่งอนาคตไว้ในหนึ่งเดียว</p>
         </section>
 
         <img src="https://media.robotshop.com/main/h/hiw/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving/hiwonder-mentorpi-m1-raspberry-pi-5-robot-car-mecanum-wheel-chassis-2dof-monocular-camera-ros2-humble-support-slam-and-autonomous-driving-1.jpg" alt="MentorPi M1" class="hero-img">
 
-        <div class="feature-grid">
-            <div class="feature-item">
-                <h3>Computation</h3>
-                <p>ขุมพลังจาก <strong>Raspberry Pi 5</strong> ให้ประสิทธิภาพการประมวลผลเพิ่มขึ้นเป็นเท่าตัว รองรับการทำงานของ AI Vision และการจัดการข้อมูลจาก Lidar ได้อย่างไหลลื่นไร้การสะดุด</p>
+        <div class="feature-list">
+            <div class="feature-card">
+                <h3>01 / Computation</h3>
+                <p><strong>ขุมพลัง Raspberry Pi 5:</strong> สถาปัตยกรรมใหม่ล่าสุดที่ให้ประสิทธิภาพสูงขึ้นถึง 2-3 เท่า รองรับการประมวลผลข้อมูลมหาศาลจากเซนเซอร์ Lidar และการทำ Real-time AI Vision ได้อย่างสมบูรณ์แบบ</p>
             </div>
-            <div class="feature-item">
-                <h3>Movement</h3>
-                <p>ช่วงล่างแบบ <strong>Mecanum Wheels</strong> อิสระในการเคลื่อนที่ 360 องศา ควบคุมด้วยมอเตอร์เกียร์โลหะพร้อม Encoder ความแม่นยำสูง ตอบสนองต่อคำสั่งควบคุมได้อย่างฉับไว</p>
+            <div class="feature-card">
+                <h3>02 / Movement</h3>
+                <p><strong>Mecanum Chassis:</strong> ระบบขับเคลื่อนอิสระ 4 ล้อที่ช่วยให้หุ่นยนต์เคลื่อนที่ได้ 360 องศาโดยไม่ต้องกลับตัว มาพร้อมมอเตอร์เกียร์โลหะและ Hall Encoder เพื่อการควบคุมความเร็วที่แม่นยำในระดับมิลลิเมตร</p>
             </div>
-            <div class="feature-item">
-                <h3>Perception</h3>
-                <p>ติดตั้ง <strong>STL-19P TOF Lidar</strong> ระยะสแกน 12 เมตร และกล้อง <strong>AI Monocular Camera</strong> ความละเอียดสูง ทำหน้าที่เป็นดวงตาและหูให้กับหุ่นยนต์ในทุกสภาพแวดล้อม</p>
+            <div class="feature-card">
+                <h3>03 / Perception</h3>
+                <p><strong>Intelligence Sensors:</strong> การผสานพลังระหว่าง STL-19P TOF Lidar ที่มองเห็นได้ไกลถึง 12 เมตร และกล้อง AI Monocular Camera เพื่อการตรวจจับวัตถุและสร้างแผนที่นำทางอัจฉริยะ</p>
             </div>
-            <div class="feature-item">
-                <h3>Interaction</h3>
-                <p>รองรับการตอบสนองผ่าน <strong>MediaPipe</strong> สำหรับการจดจำใบหน้าและท่าทางมือ รวมถึงระบบ AI Voice สำหรับการสร้างปฏิสัมพันธ์ระหว่างมนุษย์และหุ่นยนต์ที่สมบูรณ์แบบ</p>
+            <div class="feature-card">
+                <h3>04 / Interaction</h3>
+                <p><strong>Human-Robot Interface:</strong> รองรับการโต้ตอบผ่าน MediaPipe และ AI Voice ช่วยให้หุ่นยนต์สามารถจดจำใบหน้า ท่าทาง และปฏิบัติตามคำสั่งเสียงได้อย่างชาญฉลาด</p>
             </div>
         </div>
 
@@ -99,21 +109,20 @@
             <div class="tech-stack">
                 <span class="tech-tag">ROS2 HUMBLE</span>
                 <span class="tech-tag">UBUNTU 22.04</span>
-                <span class="tech-tag">DOCKER</span>
+                <span class="tech-tag">DOCKER API</span>
                 <span class="tech-tag">YOLO V5/V11</span>
                 <span class="tech-tag">OPENCV</span>
-                <span class="tech-tag">PYTHON</span>
+                <span class="tech-tag">PYTHON 3</span>
             </div>
         </section>
 
         <div class="cta-bottom">
-            <p style="margin-bottom: 20px; color: var(--tesla-gray);">พร้อมสำหรับการเริ่มต้นการเรียนรู้หรือยัง?</p>
             <a href="schedule.html" class="btn btn-dark">เข้าสู่ตารางการอบรม</a>
         </div>
     </div>
 
     <footer style="padding: 40px; text-align: center; color: var(--tesla-gray); font-size: 0.8rem; border-top: 1px solid #eee;">
-        MentorPi Training © 2026 | Developed for Professional Robotics Education
+        MentorPi Training © 2026 | Professional Robotics Education
     </footer>
 </body>
 </html>
